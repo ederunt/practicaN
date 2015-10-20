@@ -1,0 +1,2 @@
+[Thu Oct 15 19:37:43.528607 2015] [negotiation:error] [pid 199] [client 172.17.42.1:52773] AH00687: Negotiation: discovered file(s) matching request: /var/www/html/public/index (None could be negotiated).
+[Thu Oct 15 19:37:45.980026 2015] [negotiation:error] [pid 199] [client 172.17.42.1:52773] AH00687: Negotiation: discovered file(s) matching request: /var/www/html/public/index (None could be negotiated).
