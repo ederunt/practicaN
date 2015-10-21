@@ -17,7 +17,7 @@ use Zend\View\Model\ViewModel;
 //use Zend\Db\Adapter\Adapter;
 use Application\Model\PruebaModel;
 use Application\Form\registro;
-use Application\InputFilter\registro;
+//use Application\InputFilter\registro;
 //use Zend\Db\ResultSet\ResultSet;
 
 class IndexController extends AbstractActionController {
