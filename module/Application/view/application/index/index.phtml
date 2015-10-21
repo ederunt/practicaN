@@ -1,15 +1,25 @@
-
+<h1>Listar Usuarios</h1>
+<br/>
+<br/>
 <table border="1">
     <tr>
         <th>Nombre</th>
-        <th>Descripcion</th>
+        <th>Apellido</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
         <th>Estado</th>
     </tr>
-    <?php foreach ($lista as $last){;?>
+    <?php foreach ($this->lista as $last){;?>
+    <?php 
+        if($last['estado']=='1') $estado = "Activo";
+        else $estado = "Inactivo";  
+    ?>
     <tr>
     <td> <?php echo  $last['nombre'];?></td>
-    <td> <?php echo  $last['descripcion'];?></td>
-    <td> <?php echo  $last['estado'];?></td>
+    <td> <?php echo  $last['apellido'];?></td>
+    <td> <?php echo  $last['direccion'];?></td>
+    <td> <?php echo  $last['telefono'];?></td>
+    <td> <?php echo  $estado;?></td>
     </tr>
     <?php };?>
     

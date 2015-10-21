@@ -10,43 +10,38 @@ class registro extends Form {
     public function __construct($name = null)
      {
         parent::__construct($name);
-        $this->setInputFilter(new \Application\Form\AddUsuarioValidator());
+      //  $this->setInputFilter(new \Application\Form\AddUsuarioValidator());
         $this->setAttributes(array(
             //'action' => $this->url.'/modulo/recibirformulario',
-            'action'=>"/application/index/index01",
+            //'action'=>"/application/index/add",
+            'action'=>"",
             'method' => 'post'
         ));
         
-//        $this->add(array(
-//            'name' => 'email',
-//            'options' => array(
-//                'label' => 'Correo: ',
-//            ),
-//            'attributes' => array(
-//                'type' => 'email',
-//                'class' => 'input form-control',
-//                'required'=>'required'
-//            )
-//        ));
-
-         
-//         $this->add(array(
-//            'name' => 'password',
-//            'options' => array(
-//                'label' => 'Contraseña: ',
-//            ),
-//
-//            'attributes' => array(
-//                'type' => 'password',
-//                'class' => 'input form-control',
-//                'required'=>'required'
-//            )
-//        ));
-
           $this->add(array(
             'name' => 'nombre',
             'options' => array(
                 'label' => 'Nombre: ',
+
+            ),
+
+            'attributes' => array(
+
+               'type' => 'text',
+
+                'class' => 'input form-control',
+
+                'required'=>'required'
+
+            )
+
+        ));
+          
+          
+          $this->add(array(
+            'name' => 'apellido',
+            'options' => array(
+                'label' => 'Apellido: ',
 
             ),
 
@@ -101,30 +96,8 @@ class registro extends Form {
             )
 
         ));
-
-         
-
-//        $this->add(array(
-//            'name' => 'apellido',
-//            'options' => array(
-//
-//                'label' => 'Apellidos: ',
-//
-//            ),
-//
-//            'attributes' => array(
-//
-//                'type' => 'text',
-//
-//                'class' => 'input form-control',
-//
-//                'required'=>'required'
-//
-//            )
-//
-//        ));
-
-
+          
+          
         $this->add(array(
 
             'name' => 'submit',

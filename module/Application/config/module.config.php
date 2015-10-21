@@ -28,7 +28,7 @@ return array(
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Application\Controller',
                                 'controller' => 'Index',
-                                'action' => 'index01',
+                                'action' => 'add',
                             ),
                         ),
                     ),

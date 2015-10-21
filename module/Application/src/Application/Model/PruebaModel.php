@@ -4,7 +4,7 @@ namespace Application\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
-use Zend\Db\Sql\Select;
+//use Zend\Db\Sql\Select;
 //use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\ResultSet\ResultSet;
 
@@ -35,7 +35,7 @@ class PruebaModel extends TableGateway
 
         $select = $sql->select();
 
-        $select->columns(array('nombre','descripcion','estado'))
+        $select->columns(array('nombre','apellido','direccion','telefono'))
 
                ->from('usuarios');
 
@@ -50,29 +50,29 @@ class PruebaModel extends TableGateway
         }
         
         
-//        public function addUsuario($nombre,$direccion,$telefono){
-//
-//        $consulta=$this->dbAdapter->query("SELECT count(email) as count FROM v_prueba",Adapter::QUERY_MODE_EXECUTE);
-//
-//        $datos=$consulta->toArray();
-//
-//        if($datos[0]["count"]==0){
-//
-//         $insert=$this->insert(array(
-//                            "nombre"    => $email,
-//                            "direccion" => $direccion,
-//                            "telefono"   => $telefono
-//                       ));
-//
-//        }else{
-//
-//            $insert=false;
-//
-//        }
-//
-//         return $insert;
-//
-//     }
+        public function addUsuario($nombre,$apellido,$direccion,$telefono){
+        
+        $consulta=$this->dbAdapter->query("SELECT count(idusuarios) as count FROM usuarios",Adapter::QUERY_MODE_EXECUTE);
+        $datos=$consulta->toArray();
+        if($datos[0]["count"]!=0){
+            
+         $insert=$this->insert(array(
+                            "nombre"    => $nombre,
+                            "apellido" => $apellido,
+                            "direccion" => $direccion,
+                            "telefono" => $telefono,
+                            "estado"   => 1
+                       ));
+         
+        }else{
+
+            $insert=false;
+
+        }
+
+         return $insert;
+
+     }
 
 
     

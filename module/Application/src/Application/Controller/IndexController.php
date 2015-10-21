@@ -14,14 +14,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Form\demoForm;
 use Application\InputFilter\demosForm;
-use Zend\Db\Adapter\Adapter;
+//use Zend\Db\Adapter\Adapter;
 use Application\Model\PruebaModel;
+use Application\Form\registro;
 //use Zend\Db\ResultSet\ResultSet;
 
 class IndexController extends AbstractActionController {
 
     public function indexAction() {
-
+//mod-enable/rewirte.log
         //echo 'ola';
         //exit;
 //        echo 'vaaaa';
@@ -37,129 +38,48 @@ class IndexController extends AbstractActionController {
                 ));
     }
     
-    public function loginAction() {
-        
-        $form = new demoForm();
-        $inputFilter = new demosForm();
-        $data = $this->getRequest()->getPost();
-      
-        $form->setData($data);
-        $form->setInputFilter($inputFilter);
-        if ($form->isValid()) {
-//            echo 'is valid';
-//            exit();
-        } else {
-//            var_dump($form->getMessages());
-//            exit();
-            $this->flashMessenger()->addMessage(json_encode($form->getMessages()));
-//            //f029a90471a4
-            return $this->redirect()->toUrl('/application/index');
-        }
-    }
-    
-    public function index01Action(){
-        //$val = "olaaaa";
-        //echo 'aquiiii';
-//        $this->dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-//        $result = $this->dbAdapter->query('SELECT * FROM mod_usuario_rol',Adapter::QUERY_MODE_EXECUTE);
-//        $returnArray = array();
-//        foreach ($result as $list){
-//            $returnArray[] = $list;
+//    public function loginAction() {
+//        
+//        $form = new demoForm();
+//        $inputFilter = new demosForm();
+//        $data = $this->getRequest()->getPost();
+//      
+//        $form->setData($data);
+//        $form->setInputFilter($inputFilter);
+//        if ($form->isValid()) {
+////            echo 'is valid';
+////            exit();
+//        } else {
+////            var_dump($form->getMessages());
+////            exit();
+//            $this->flashMessenger()->addMessage(json_encode($form->getMessages()));
+////            //f029a90471a4
+//            return $this->redirect()->toUrl('/application/index');
 //        }
-//        //print_r($list);
-//        //exit;
-//        //return array("valor"=>$val);
-//        $resultado = $result->toArray();
-        //$resultado = "aver";
-        return new ViewModel(array('valor'=> $resultado));
-        //return new ViewModel(array('valor'=> $result));
-    }
-    
+//    }
+        
     
     public function addAction(){
-
-        $form=new AddUsuario("form");
         
-        $vista=array("form"=>$form);
-        
-        if($this->getRequest()->isPost()) {
+        //aqui mandamos el formulario a la vista 
+        $form=new registro();
+        //aqui instanciamos el metodo de carga del modelo
+        if($this->getRequest()->isPost()){
+            $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+            $usuarios=new PruebaModel($this->dbAdapter);
+            //obtener los datos del formulario
+            $nombre=$this->request->getPost('nombre');
+            $apellido=$this->request->getPost('apellido');
+            $direccion=$this->request->getPost('direccion');
+            $telefono=$this->request->getPost('telefono');
             
-            $form->setData($this->getRequest()->getPost());
-            if($form->isValid()){
-                //Cargamos el modelo
-                $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-
-                $usuarios=new UsuariosModel($this->dbAdapter);
-
-                //Recogemos los datos del formulario
-
-                $email=$this->request->getPost("email");
-
-                 
-
-                /*
-57
-                Ciframos la contraseña
-58
-                para la maxima seguridad le aplicamos un salt
-59
-                y hacemos el hash del hash 5 veces
-60
-                (por defecto vienen mas de 10 pero es mas lento)
-61
-                */
-                $bcrypt = new Bcrypt(array(
-
-                                'salt' => 'aleatorio_salt_pruebas_victor',
-
-                                'cost' => 5));
-
-                $securePass = $bcrypt->create($this->request->getPost("password"));
-
-                 
-
-                $password=$securePass;
-
-                $nombre=$this->request->getPost("nombre");
-
-                $apellido=$this->request->getPost("apellido");
-
-                 
-
-                //Insertamos en la bd
-
-                $insert=$usuarios->addUsuario($email, $password, $nombre, $apellido);
-
-                 
-
-                //Mensajes flash $this->flashMessenger()->addMenssage("mensaje");
-
-                if($insert==true){
-
-                    $this->flashMessenger()->setNamespace("add_correcto")->addMessage("Usuario añadido correctamente");
-
-                    return $this->redirect()->toUrl($this->getRequest()->getBaseUrl().'/crud/');
-
-                }else{
-
-                    $this->flashMessenger()->setNamespace("duplicado")->addMessage("Usuario duplicado mete otro");
-
-                    return $this->redirect()->refresh();
-
-                }
-
-            }else{
-
-                $err=$form->getMessages();
-
-                $vista=array("form"=>$form,'url'=>$this->getRequest()->getBaseUrl(),"error"=>$err);
-
-            }
+            $usuarios->addUsuario($nombre,$apellido,$direccion,$telefono);
+            
         }
-        return new ViewModel($vista);
+        return new ViewModel(array('form'=>$form));
+        
     }
-
-    
-    
-
+        
+        
+        
 }
