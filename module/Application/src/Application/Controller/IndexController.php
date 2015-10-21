@@ -12,11 +12,12 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Form\demoForm;
-use Application\InputFilter\demosForm;
+//use Application\Form\demoForm;
+//use Application\InputFilter\demosForm;
 //use Zend\Db\Adapter\Adapter;
 use Application\Model\PruebaModel;
 use Application\Form\registro;
+use Application\InputFilter\registro;
 //use Zend\Db\ResultSet\ResultSet;
 
 class IndexController extends AbstractActionController {
@@ -65,21 +66,22 @@ class IndexController extends AbstractActionController {
         $form=new registro();
         //aqui instanciamos el metodo de carga del modelo
         if($this->getRequest()->isPost()){
-            $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-            $usuarios=new PruebaModel($this->dbAdapter);
-            //obtener los datos del formulario
-            $nombre=$this->request->getPost('nombre');
-            $apellido=$this->request->getPost('apellido');
-            $direccion=$this->request->getPost('direccion');
-            $telefono=$this->request->getPost('telefono');
-            
-            $usuarios->addUsuario($nombre,$apellido,$direccion,$telefono);
+             $form->setData($this->getRequest()->getPost());
+            if($form->isValid()){
+                
+                $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+                $usuarios=new PruebaModel($this->dbAdapter);
+                //obtener los datos del formulario
+                $nombre=$this->request->getPost('nombre');
+                $apellido=$this->request->getPost('apellido');
+                $direccion=$this->request->getPost('direccion');
+                $telefono=$this->request->getPost('telefono');
+                $usuarios->addUsuario($nombre,$apellido,$direccion,$telefono);
+            }
             
         }
         return new ViewModel(array('form'=>$form));
         
     }
-        
-        
-        
+               
 }
