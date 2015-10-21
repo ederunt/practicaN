@@ -74,7 +74,7 @@ class IndexController extends AbstractActionController {
             $telefono=$this->request->getPost('telefono');
             
             $usuarios->addUsuario($nombre,$apellido,$direccion,$telefono);
-            //eder
+            
         }
         return new ViewModel(array('form'=>$form));
         
