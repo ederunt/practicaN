@@ -32,6 +32,20 @@ return array(
                             ),
                         ),
                     ),
+                    
+                    
+                    'ruta-dos' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => 'rutados',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Application\Controller',
+                                'controller' => 'Index',
+                                'action' => 'delete',
+                            ),
+                        ),
+                    ),
+                    
                 )
             ),
             // The following is a route to simplify getting started creating
@@ -131,10 +145,10 @@ return array(
                 'label' => 'opcion1',
                 'route' => 'home/ruta-uno',
             ),
-//            array(
-//                'label' => 'opcion2',
-//                'route' => 'home',
-//            ),
+            array(
+                'label' => 'opcion2',
+                'route' => 'home/ruta-dos',
+            ),
 //            array(
 //                'label' => 'opcion3',
 //                'route' => 'home',

@@ -83,5 +83,10 @@ class IndexController extends AbstractActionController {
         return new ViewModel(array('form'=>$form));
         
     }
+    
+    public function deleteAction(){
+        $dato = "olaaaaaaaaa";
+        return new ViewModel(array('datos'=>$dato));
+    }
                
 }
