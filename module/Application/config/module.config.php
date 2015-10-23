@@ -16,6 +16,7 @@ return array(
                     'route' => '/',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
+                        //'controller' => 'StickyNotes\Controller\Index',
                         'action' => 'index',
                     ),
                 ),
