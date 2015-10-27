@@ -114,12 +114,46 @@ class IndexController extends AbstractActionController {
     }
 
     public function modificarAction(){
-        $vista_modificar ="estamos en la vista Modificar";
-        return new ViewModel(array('modificar'=>$vista_modificar));
+//        $vista_modificar ="estamos en la vista Modificar";
+         $id=$this->params()->fromRoute("id",null);
+        $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $usuarios=new PruebaModel($this->dbAdapter);        
+        $usuario=$usuarios->UnUsuario($id);
+        $form=new registro();
+        $form->setData($usuario);
+        
+        if($this->getRequest()->isPost()){
+             $form->setData($this->getRequest()->getPost());
+            if($form->isValid()){
+                
+                $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+                $usuarios=new PruebaModel($this->dbAdapter);
+                //obtener los datos del formulario
+                $nombre=$this->request->getPost('nombre');
+                $apellido=$this->request->getPost('apellido');
+                $direccion=$this->request->getPost('direccion');
+                $telefono=$this->request->getPost('telefono');
+                $usuarios->updateUsuario($id,$nombre,$apellido,$direccion,$telefono);
+            }
+            
+        }
+        
+        
+
+        return new ViewModel(array('form'=>$form));
     }
 
-    public function deleteAction(){
-        $dato = "olaaa"; 
+    public function eliminarAction(){
+        $id=$this->params()->fromRoute("id",null);
+        $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $usuarios=new PruebaModel($this->dbAdapter);
+        //$usuarios->deleteUsuario($id);
+        $delete=$usuarios->deleteUsuario($id);
+        if($delete==true){
+            $dato = "registro eliminado satisfactoriamente";
+        }else {
+            $dato = "registro no eliminado";
+        }
         return new ViewModel(array('datos'=>$dato));
     }
                

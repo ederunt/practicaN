@@ -66,6 +66,21 @@ class PruebaModel extends TableGateway
 
         return $result[0];
         }
+        
+        
+        public function updateUsuario($id,$nombre,$apellido,$direccion,$telefono){
+         $update=$this->update(array(
+                                "nombre"    => $nombre,
+
+                                "apellido" => $apellido,
+
+                                "direccion"   => $direccion,
+
+                                "telefono" => $telefono
+                                ),
+                                array("idusuarios"=>$id));
+         return $update;
+     }
 
 
         
@@ -92,6 +107,13 @@ class PruebaModel extends TableGateway
          return $insert;
 
      }
+     
+     public function deleteUsuario($id){
+         $delete=$this->delete(array("idusuarios"=>$id));
+         return $delete;
+     }
+
+     
 
 
     

@@ -13,7 +13,9 @@
         <th>Direccion</th>
         <th>Telefono</th>
         <th>Estado</th>
-        <th> ---- </th>
+        <th style="text-align: center">Ver</th>
+        <th style="text-align: center">Modificar</th>
+        <th style="text-align: center">Eliminar</th>
     </tr>
     <?php foreach ($this->lista as $last){;?>
     <?php 
@@ -27,9 +29,13 @@
     <td> <?php echo  $last['telefono'];?></td>
     <td> <?php echo  $estado;?></td>
     <td>
-        <a class="btn btn-success" href="<?=$this->basePath()?>/application/index/ver/<?php echo $last["idusuarios"]?>">Ver</a>
-<!--        <a class="btn btn-primary" href="<? =$this->basePath()?>../../index/modificar/<? =$last["idusuarios"]?>">Modificar</a>
-        <a class="btn btn-danger" href="<? =$this->basePath()?>../../index/eliminar/<? =$last["idusuarios"]?>">Eliminar</a>-->
+        <a class="btn btn-success" href="<?=$this->basePath()?>/application/index/ver/<?=$last["idusuarios"]?>">Ver</a>
+    </td>
+    <td>
+        <a class="btn btn-primary" href="<?=$this->basePath()?>/application/index/modificar/<?=$last["idusuarios"]?>">Modificar</a>
+    </td>
+    <td>
+        <a class="btn btn-danger" href="<?=$this->basePath()?>/application/index/eliminar/<?=$last["idusuarios"]?>">Eliminar</a>
     </td>
     </tr>
     <?php };?>

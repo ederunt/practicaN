@@ -10,7 +10,7 @@ class registro extends Form {
     public function __construct($name = null)
      {
         parent::__construct($name);
-        $this->setInputFilter(new \Application\Form\registroValidator());
+      //  $this->setInputFilter(new \Application\Form\registroValidator());
         $this->setAttributes(array(
             //'action' => $this->url.'/modulo/recibirformulario',
             //'action'=>"/application/index/add",

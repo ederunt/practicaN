@@ -1,5 +1,101 @@
+<h1>Modificar Usuario</h1>
+<br/>
+<br/>
 <?php 
 
-    echo $modificar;
-    
+$form = $this->form;
+
+$form->prepare();
+
+$formLabel = $this->plugin('formLabel');
+
+echo $this->form()->openTag($form);
+
 ?>
+
+
+<div class="form_element">
+
+<?php
+
+    $name = $form->get('nombre');
+
+    echo $formLabel->openTag().$name->getOption('label')." ";
+
+    echo $this->formInput($name);
+
+    echo $this->formElementErrors($name);
+
+    echo $formLabel->closeTag();
+
+?>
+
+</div>
+
+<div class="form_element">
+
+<?php
+
+    $apellido = $form->get('apellido');
+
+    echo $formLabel->openTag().$apellido->getOption('label')." ";
+
+    echo $this->formInput($apellido);
+
+    echo $this->formElementErrors($apellido);
+
+    echo $formLabel->closeTag();
+
+?>
+
+</div>
+
+
+<div class="form_element">
+
+<?php
+
+    $direccion = $form->get('direccion');
+
+    echo $formLabel->openTag().$direccion->getOption('label')." ";
+
+    echo $this->formInput($direccion);
+
+    echo $this->formElementErrors($direccion);
+
+    echo $formLabel->closeTag();
+
+?>
+
+</div>
+
+
+<div class="form_element">
+
+<?php
+
+    $telefono = $form->get('telefono');
+
+    echo $formLabel->openTag().$telefono->getOption('label')." ";
+
+    echo $this->formInput($telefono);
+
+    echo $this->formElementErrors($telefono);
+
+    echo $formLabel->closeTag();
+
+?>
+
+</div>
+
+
+<?php
+echo $this->formElement($form->get('submit'));
+echo $this->form()->closeTag();
+?>
+<br/>
+<br/>
+<div>
+    <a class="btn btn-default" href="<?=$this->basePath("")?>">Volver</a>
+</div>
+
