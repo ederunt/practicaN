@@ -84,6 +84,40 @@ class IndexController extends AbstractActionController {
         
     }
     
+    public function verAction(){
+        
+        $id=$this->params()->fromRoute("id",null);
+        $this->dbAdapter=$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $usuarios=new PruebaModel($this->dbAdapter);      
+        $usuario=$usuarios->unUsuario($id);
+
+         if($usuario){
+
+             return new ViewModel(
+
+                 array(
+
+                    "id"      => $id,
+
+                    "usuario" => $usuario
+
+                ));
+
+       }else{
+
+             return $this->redirect()->toUrl($this->getRequest()->getBaseUrl().'/application/index/');
+
+         }
+
+        //$vista_ver ="estamos en la vista ver";
+        return new ViewModel(array('ver'=>$id));
+    }
+
+    public function modificarAction(){
+        $vista_modificar ="estamos en la vista Modificar";
+        return new ViewModel(array('modificar'=>$vista_modificar));
+    }
+
     public function deleteAction(){
         $dato = "olaaa"; 
         return new ViewModel(array('datos'=>$dato));

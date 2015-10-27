@@ -1,8 +1,9 @@
 <?php
 
 namespace StickyNotes\Controller;
+
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+//use Zend\View\Model\ViewModel;
 
 class StickyNotesController extends AbstractActionController{
     

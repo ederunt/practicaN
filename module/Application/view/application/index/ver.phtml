@@ -1,0 +1,16 @@
+<?php 
+
+    //echo $ver." "."id".$id;
+//echo $ver;
+//echo '<pre>';
+//print_r($usuario);
+//echo '</pre>';    
+?>
+
+<h1>Lista de Usuarios</h1>
+<h3>Viendo usuario <?=$id?></h3>
+<?php
+echo $usuario["nombre"]." - ".$usuario["apellido"]." - ".$usuario["direccion"]." - ".$usuario["telefono"];
+?>
+<hr/>
+<a class="btn btn-default" href="<?=$this->basePath("")?>">Volver</a>

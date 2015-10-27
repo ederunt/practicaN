@@ -49,6 +49,25 @@ class PruebaModel extends TableGateway
 
         }
         
+        public function unUsuario($id){
+            $sql = new Sql($this->dbAdapter);
+
+        $select = $sql->select();
+
+        $select->columns(array('nombre','apellido','direccion','telefono'))
+               ->from('usuarios')
+               ->where(array('idusuarios' => $id));
+
+        $selectString = $sql->getSqlStringForSqlObject($select);
+
+        $execute = $this->dbAdapter->query($selectString, Adapter::QUERY_MODE_EXECUTE);
+
+        $result=$execute->toArray();       
+
+        return $result[0];
+        }
+
+
         
         public function addUsuario($nombre,$apellido,$direccion,$telefono){
         

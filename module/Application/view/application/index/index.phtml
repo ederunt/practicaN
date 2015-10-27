@@ -1,6 +1,11 @@
 <h1>Listar Usuarios</h1>
 <br/>
 <br/>
+<div>
+<!--    <a class="btn btn-success" href="<? =$this->basePath()?>application/index/add">Añadir usuario</a>-->
+    <a class="btn btn-success" href="<?=$this->basePath("rutauno")?>">Añadir Usuario</a>
+</div>
+<br/>
 <table border="1">
     <tr>
         <th>Nombre</th>
@@ -8,6 +13,7 @@
         <th>Direccion</th>
         <th>Telefono</th>
         <th>Estado</th>
+        <th> ---- </th>
     </tr>
     <?php foreach ($this->lista as $last){;?>
     <?php 
@@ -20,6 +26,11 @@
     <td> <?php echo  $last['direccion'];?></td>
     <td> <?php echo  $last['telefono'];?></td>
     <td> <?php echo  $estado;?></td>
+    <td>
+        <a class="btn btn-success" href="<?=$this->basePath()?>/application/index/ver/<?php echo $last["idusuarios"]?>">Ver</a>
+<!--        <a class="btn btn-primary" href="<? =$this->basePath()?>../../index/modificar/<? =$last["idusuarios"]?>">Modificar</a>
+        <a class="btn btn-danger" href="<? =$this->basePath()?>../../index/eliminar/<? =$last["idusuarios"]?>">Eliminar</a>-->
+    </td>
     </tr>
     <?php };?>
     
