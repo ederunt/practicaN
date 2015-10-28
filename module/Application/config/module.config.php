@@ -42,7 +42,7 @@ return array(
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Application\Controller',
                                 'controller' => 'Index',
-                                'action' => 'delete',
+                                'action' => 'vista',
                             ),
                         ),
                     ),

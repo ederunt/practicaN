@@ -156,5 +156,11 @@ class IndexController extends AbstractActionController {
         }
         return new ViewModel(array('datos'=>$dato));
     }
+    
+    
+    public function vistaAction(){
+        $mensaje = "olaaaaa esta es mi vista de prueba";
+        return new ViewModel(array('msg'=>$mensaje));
+    }
                
 }
